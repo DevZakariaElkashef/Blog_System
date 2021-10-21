@@ -41,15 +41,14 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'author' => 'required',
-            'email' => 'required',
             'content' => 'required',
         ]);
         $comment = new comment();
 
+        $comment->user_id = Auth::user()->id;
         $comment->post_id = $request->post_id;
-        $comment->author = $request->author;
-        $comment->email = $request->email;
+        $comment->author =  Auth::user()->user_name;
+        $comment->email =  Auth::user()->email;
         $comment->content = $request->content;
         $comment->date = date('d-m-y');
 

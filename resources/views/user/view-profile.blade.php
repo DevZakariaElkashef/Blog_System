@@ -1,5 +1,6 @@
 @extends('layouts/blog-layout')
-@section('header')
+@section('title') Blog CMS - {{ Auth::user()->user_name }} @endsection
+@section('header') 
 
 <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
@@ -14,7 +15,7 @@
 
 @section('content')
 
-<div class="container py-5">
+<div class=" py-5">
     <div class="row align-items-center justify-content-around">
         <div class="col-4">
             <img src="{{asset('img/undraw_profile.svg')}}" alt="{{Auth::user()->first_name}}">

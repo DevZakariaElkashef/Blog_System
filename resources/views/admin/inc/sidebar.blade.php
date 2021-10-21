@@ -29,7 +29,7 @@
     
     <!-- Nav Item - Pages categories Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categories"
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#categories"
             aria-expanded="true" aria-controls="categories">
             <i class="fa fa-list-alt"></i>
             <span>Categories</span>
@@ -45,7 +45,7 @@
     
     <!-- Nav Item - Pages posts Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#posts"
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#posts"
             aria-expanded="true" aria-controls="posts">
             <i class="fas fa-shopping-basket"></i>
             <span>Posts</span>
@@ -68,7 +68,7 @@
 
     <!-- Nav Item - Pages Users Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#users"
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#users"
             aria-expanded="true" aria-controls="users">
             <i class="fas fa-users"></i>
             <span>Users</span>

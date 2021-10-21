@@ -1,4 +1,5 @@
 @extends('layouts/blog-layout')
+@section('title') Blog CMS - {{ Auth::user()->user_name }} @endsection
 @section('header')
 
 <header class="py-5 bg-light border-bottom mb-4">

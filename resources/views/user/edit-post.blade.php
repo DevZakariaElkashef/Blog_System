@@ -1,4 +1,5 @@
 @extends('layouts/blog-layout')
+@section('title') Blog CMS - {{ $post->title }} @endsection
 @section('content')
 
 <div id="success" class="col-5 mx-auto bg-success text-light rounded"></div>
@@ -11,8 +12,8 @@
     <div class="form-group">
         <label>Category Name</label>
         <select name="category_id" class="form-control">
-            @foreach ($categories as $category)
-                <option value="{{$category->id}}" @if($post->category_id == $category->id) selected @endif >{{$category->name}}</option>
+            @foreach ($cats as $cat)
+                <option value="{{$cat->id}}" @if($post->category_id == $cat->id) selected @endif >{{$cat->name}}</option>
             @endforeach
         </select>
     </div>
@@ -30,7 +31,6 @@
     </div>
     <div class="form-group ">
         <select name="status" class="form-select">
-            <option selected>Select Status</option>
             <option value="published">Publish</option>
             <option value="drafted">Draft</option>
         </select>
@@ -53,41 +53,6 @@
 @endsection
 
 @section('js')
-    
-    <script>
-        $('#editPost').submit(function(e){
-            e.preventDefault();
-            var action = $(this).attr('action');
-            
-            
-            $.ajax({
-                url: action,
-                type: 'POST',
-                data: new FormData( this ),
-                processData: false,
-                contentType: false,
-                success:function(result){
-                    $('#success').append(`<p class="text-center p-3 m-2"> ${result.message} </p>`);
-                    setTimeout(function() { 
-                        $('#success').html('');
-                    }, 1700);
-
-                },error:function(xhr, status, error){
-                    $('#success').html('');
-                    $.each(xhr.responseJSON.errors,function(key,item){
-                        $('#success').append(`<p> ${item} </p>`);
-                    })
-                    setTimeout(function() { 
-                        $('#success').html('');
-                    }, 1700);
-                }
-            
-            });
-        });
-    
-    </script>
-
-
 <script>
     ClassicEditor
         .create( document.querySelector( '#postContent' ) )

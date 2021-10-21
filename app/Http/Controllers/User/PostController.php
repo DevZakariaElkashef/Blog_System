@@ -50,7 +50,6 @@ class PostController extends Controller
 
         $img_name = time() . '-' . str_replace(' ', '', $request->title) . '.' .$request->image->extension();
         $request->image->move(public_path('img/posts'), $img_name);
-
         $post = new Post();
         $post->category_id = $request->category_id;
         $post->user_id = Auth::user()->id;
@@ -73,8 +72,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $rows = Post::where('user_id', '=', $id)->get();
-        $cats = Category::paginate(50);
+        $rows = Post::where('user_id', '=', $id)->paginate(3);
+        $cats = Category::all();
         
         return view('user.view-posts', compact('rows' ,'cats'));
     }
@@ -88,8 +87,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        $categories = Category::all();
-        return view('user.edit-post', compact('post' ,'categories'));
+        $cats = Category::all();
+        return view('user.edit-post', compact('post' ,'cats'));
     }
 
     /**
@@ -139,6 +138,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::findORFail($id)->delete();
+        return Response()->json(['message'=>'Deleted Success', 'id'=>$id]);
     }
 }

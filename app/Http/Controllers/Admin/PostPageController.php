@@ -25,12 +25,14 @@ class PostPageController extends Controller
     public function author($author){
         $rows = Post::where('author', '=', $author)->get();
         $cats = Category::paginate(50);
-        return view('post.author', compact('cats', 'rows'));
+        $author = $author;
+        return view('post.author', compact('cats', 'rows', 'author'));
     }
 
     public function category($catId){
         $rows = Post::where('category_id', '=', $catId)->get();
         $cats = Category::paginate(50);
-        return view('post.category', compact('rows', 'cats'));
+        $cat_name = Category::findOrFail($catId)->name;
+        return view('post.category', compact('rows', 'cats', 'cat_name'));
     }
 }

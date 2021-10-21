@@ -15,9 +15,9 @@ class BlogController extends Controller
         $posts = Post::where('status', '=', 'published')->paginate(6);
         $cats = Category::all();
 
-        if(count($posts) > 1 && count($cats) > 1){
-            $rand = rand(0, (count($posts)-1));
-            $rand_post = $posts[$rand];
+        if(count(Post::all()) > 1 && count($cats) > 1){
+            $rand = rand(0, (count(Post::all())-1));
+            $rand_post =  Post::all()[$rand];
             return view('blog.index', compact('posts', 'cats', 'rand_post'));
         }
         return view('blog.index', compact('posts' ,'cats'));
