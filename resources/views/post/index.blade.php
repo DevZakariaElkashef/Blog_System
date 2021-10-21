@@ -1,4 +1,4 @@
-@extends('admin/inc/blog-layout')
+@extends('layouts/blog-layout')
 @section('content')
 
         <!-- Page content-->
@@ -10,8 +10,17 @@
                     <article>
                         <!-- Post header-->
                         <header class="mb-4">
-                            <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">{{$post->title}}</h1>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- Post title-->
+                                <h1 class="fw-bolder mb-1">{{$post->title}}</h1>
+                                @can('bloger')
+                                @if (Auth::user()->id === $post->user_id)
+                                <!-- Post Edit -->
+                                <a href="{{ route('user_post.edit', $post->id) }}" class="btn btn-outline-primary py-1">Edit</a>
+                                @endif
+                                @endcan
+                                
+                            </div>
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">Posted on {{$post->created_at}} by <a class="text-decoration-none text-primary  text-opacity-75" href="{{url('author/'. $post->author)}}">{{$post->author}}</a></div>
                             <!-- Post categories-->
@@ -23,7 +32,7 @@
                             
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="{{asset('img/posts/'.$post->image)}}" alt="..." /></figure>
+                        <figure class="mb-4"><img class="w-100 rounded" src="{{asset('img/posts/'.$post->image)}}" alt="..." /></figure>
                         <!-- Post content-->
                         <section class="mb-5">
                             <p class="fs-5 mb-4 text-justify">{!! $post->content !!}</p>
@@ -113,7 +122,7 @@
                                     <div class="modal-body">
                                         <div id="errors" class=" bg-danger text-light text-center rounded"></div>
                                         <div id="success" class=" bg-success text-light text-center rounded"></div>
-                                    <form action="{{route('new-post.store')}}" method="post" id="addPost">
+                                    <form action="{{route('user_post.store')}}" method="post" id="addPost">
                                         @csrf
                                         <div class="form-group">
                                             <label>Category Name</label>
@@ -166,7 +175,7 @@
                                 @foreach ($cats as $cat)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="{{url('category/'.$cat->id)}}">{{$cat->name}}</a></li>
+                                        <li><a href="{{url('category/'.$cat->id)}}" class="text-decoration-none">{{$cat->name}}</a></li>
                                     </ul>
                                 </div>
                                 @endforeach

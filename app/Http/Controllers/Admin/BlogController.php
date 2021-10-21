@@ -28,7 +28,9 @@ class BlogController extends Controller
         $request->validate([
             'search' => 'required'
         ]);
-        $rows = Post::where('title', 'LIKE', '%'.$request->search.'%')->get();
+        $rows = Post::where('title', 'LIKE', '%'.$request->search.'%')
+                    ->orWhere('tags', 'LIKE', '%'.$request->search.'%')
+                    ->orWhere('author', 'LIKE', '%'.$request->search.'%')->get();
         $cats = Category::paginate(50);
         return view('blog.search', compact('rows', 'cats'));
 

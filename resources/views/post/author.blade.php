@@ -1,4 +1,4 @@
-@extends('admin/inc/blog-layout')
+@extends('layouts/blog-layout')
 @section('content')
 
         <!-- Page content-->
@@ -60,7 +60,7 @@
                                     <div class="modal-body">
                                         <div id="errors" class=" bg-danger text-light text-center rounded"></div>
                                         <div id="success" class=" bg-success text-light text-center rounded"></div>
-                                    <form action="{{route('new-post.store')}}" method="post" id="addPost">
+                                    <form action="{{route('user_post.store')}}" method="post" id="addPost">
                                         @csrf
                                         <div class="form-group">
                                             <label>Category Name</label>
@@ -114,7 +114,7 @@
                                 @foreach ($cats as $cat)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="{{url('category/'.$cat->id)}}">{{$cat->name}}</a></li>
+                                        <li><a href="{{url('category/'.$cat->id)}}" class="text-decoration-none">{{$cat->name}}</a></li>
                                     </ul>
                                 </div>
                                 @endforeach

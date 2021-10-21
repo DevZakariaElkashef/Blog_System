@@ -50,7 +50,7 @@
                         </li>
                         @can('bloger')
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{url('author/'. Auth::user()->user_name)}}">My Posts</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('user_post.show', Auth::user()->id) }}">My Posts</a>
                         </li>
                         @endcan
                           @can('admins')
@@ -70,7 +70,7 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-bell fa-fw"></i>
                             <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
+                            <span class="badge badge-danger badge-counter"></span>
                         </a>
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"

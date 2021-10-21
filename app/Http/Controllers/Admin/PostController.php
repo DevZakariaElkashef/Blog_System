@@ -54,7 +54,6 @@ class PostController extends Controller
 
         $img_name = time() . '-' . str_replace(' ', '', $request->title) . '.' .$request->image->extension();
         $request->image->move(public_path('img/posts'), $img_name);
-
         $post = new Post();
         $post->category_id = $request->category_id;
         $post->user_id = Auth::user()->id;

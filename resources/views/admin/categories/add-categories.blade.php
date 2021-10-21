@@ -11,7 +11,7 @@
             @csrf
             <div class="mb-3">
               <label class="form-label">Category Name</label>
-              <input type="text" class="form-control" name="name">
+              <input type="text" class="form-control" name="name" value="{{ old('name') }}">
             </div>
             <div id="errors" class="text-danger"></div>
             <button  type="submit" class="btn btn-primary">Submit</button>
@@ -38,10 +38,19 @@
                 type: "POST",
                 data: data,
                 success:function(result){
-                    toastr.warning(`<p class='text-success fs-2'> ${result.message} </p>`)
+                    $('#success').append(`<p class="text-center p-3 m-2"> ${result.message} </p>`);
+                    setTimeout(function() { 
+                        $('#success').html('');
+                    }, 1700);
                 },error:function(xhr, status, errors){
                     $.each(xhr.responseJSON.errors,function(key,item){
-                    toastr.error(item)
+                        $('#errors').html('');
+                    $.each(xhr.responseJSON.errors,function(key,item){
+                        $('#errors').append(`<p> ${item} </p>`);
+                    })
+                    setTimeout(function() { 
+                        $('#errors').html('');
+                    }, 1700);
                     })
                     
                 }

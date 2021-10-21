@@ -10,63 +10,63 @@
     <div id="success" class="col-5 mx-auto bg-success text-light rounded"></div>
 
     <!-- DataTales Example -->
-    <form action="{{route('categoriesoptions')}}" method="post">
+    <form id="catOptions" action="{{route('categoriesoptions')}}" method="get">
         @csrf
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <div class="d-flex justify-content-between aligns-item-center">
-                <div><h4 class="my-0">All Comments</h4></div>
-                    <div class="d-flex">
-                        <select name="bulkoptions" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                            <option selected>Select Action</option>
-                            <option value="delete">Delete</option>
-                        </select>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">Apply</button>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <div class="d-flex justify-content-between aligns-item-center">
+                    <div><h4 class="my-0">All Comments</h4></div>
+                        <div class="d-flex">
+                            <select name="bulkoptions" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                <option selected>Select Action</option>
+                                <option value="delete">Delete</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Apply</button>
+                            </div>
                         </div>
-                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th scope="col"><input type="checkbox" name="" id="checkAll"></th>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Delete</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Delete</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @foreach ($rows as $row)
-                            <tr id="{{$row->id}}">
-                                <td scope="col"><input type="checkbox" name="checkBoxArray[]" value="{{$row->id}}" class="checkBokes"></td>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $row->name }}</td>
-                                <td>{{ $row->date }}</td>
-                                <td><a id="editCat" href="{{ route('categories.edit', $row->id) }}" class="btn btn-sm btn-outline-primary py-1">Edit</a></td>
-                                <td>
-                                    <a id="delCategory" href="{{ route('categories.destroy', $row->id) }}" data-id="{{$row->id}}" class="btn btn-sm btn-outline-danger py-1">Delete</a>
-                                </td>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th scope="col"><input type="checkbox" name="" id="checkAll"></th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach ($rows as $row)
+                                <tr id="{{$row->id}}">
+                                    <td scope="col"><input type="checkbox" name="checkBoxArray[]" value="{{$row->id}}" class="checkBokes"></td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $row->name }}</td>
+                                    <td>{{ $row->date }}</td>
+                                    <td><a id="editCat" href="{{ route('categories.edit', $row->id) }}" class="btn btn-sm btn-outline-primary py-1">Edit</a></td>
+                                    <td>
+                                        <a id="delCategory" href="{{ route('categories.destroy', $row->id) }}" data-id="{{$row->id}}" class="btn btn-sm btn-outline-danger py-1">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
         </div>
     </form>
 
@@ -105,8 +105,10 @@
  
      
      </script>
+
+
      <script>
-        $(document).ready(function(){
+        
 
         $('#checkAll').click(function(e){
             if(this.checked){
@@ -119,7 +121,42 @@
                 })
             }
         })
-        })
+        
+
+        // $(document).ready(function(){  
+
+        //     $('#catOptions').submit(function(e){
+        //         e.preventDefault();
+        //         var optAction = $(this).attr('action');
+        //         var optData = $(this).serialize();
+
+        //         var ids = [];  
+
+        //         $('.checkBokes').each(function(){  
+        //                 if($(this).is(":checked")){  
+        //                     ids.push($(this).val());  
+        //                 }  
+        //         });
+
+        //         ids = ids.toString();
+        //          console.log(optData);
+
+        //         $.ajax({  
+        //                 url: optAction,  
+        //                 type:"GET",  
+        //                 data:{
+        //                     data: optData
+        //                     },
+        //                 success:function(data){  
+        //                     console.log(data);  
+        //                 }  
+        //         });  
+        //     });  
+        // });  
+
+
+
+
     </script>
 
 @endsection

@@ -1,4 +1,4 @@
-@extends('admin/inc/blog-layout')
+@extends('layouts/blog-layout')
 @section('header')
 
 <header class="py-5 bg-light border-bottom mb-4">

@@ -11,7 +11,8 @@
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "sentry/sentry-laravel": "^2.9"
+        "sentry/sentry-laravel": "^2.9",
+        "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

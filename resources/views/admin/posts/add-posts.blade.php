@@ -2,7 +2,8 @@
 @section('content')
 
     <!-- Page Heading -->
-    <div id="success" class="col-5 mx-auto bg-success text-light rounded"></div>
+    <div id="success" class="col-5 mx-auto bg-success text-light rounded text-center "></div>
+    <div id="errors" class="col-5 mx-auto bg-danger text-light rounded text-center "></div>
     <div class="col-lg-12 mx-auto">
 
         <form id="addPost" action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
@@ -18,15 +19,15 @@
         </div>
         <div class="form-group">
             <label>Post Title</label>
-            <input type="text" name="title" class="form-control">
+            <input type="text" name="title" class="form-control" value="{{ old('title') }}">
         </div>
         <div class="form-group">
             <label>Post Author</label>
-            <input type="text" name="author" class="form-control">
+            <input type="text" name="author" class="form-control" value="{{ old('author') }}">
         </div>
         <div class="form-group">
             <label>Post Tags</label>
-            <input type="text" name="tags" class="form-control">
+            <input type="text" name="tags" class="form-control" value="{{ old('tags') }}">
         </div>
         <div class="form-group">
             <label>Post Status</label>
@@ -72,14 +73,17 @@
                         $('#success').html('');
                     }, 1700);
 
-                },error:function(xhr, status, error){
-                    $('#success').html('');
+                },error:function(xhr, status, errors){
                     $.each(xhr.responseJSON.errors,function(key,item){
-                        $('#success').append(`<p> ${item} </p>`);
+                        $('#errors').html('');
+                    $.each(xhr.responseJSON.errors,function(key,item){
+                        $('#errors').append(`<p class="text-center p-3 m-2"> ${item} </p>`);
                     })
                     setTimeout(function() { 
-                        $('#success').html('');
+                        $('#errors').html('');
                     }, 1700);
+                    })
+                    
                 }
             
             });
@@ -88,11 +92,14 @@
     </script>
 
 <script>
-    ClassicEditor
+    $(document).ready(function(){
+
+        ClassicEditor
         .create( document.querySelector( '#postContent' ) )
         .catch( error => {
             console.error( error );
         } );
+    })
 </script>
 
 @endsection

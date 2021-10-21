@@ -64,23 +64,17 @@ class BlukOptoinsController extends Controller
     
     public function categoriesOptions (Request $request) {
         
-        foreach($request->checkBoxArray as $categoryId){
-            
-            
-            $bulkOptions = $request->bulkoptions;
-
-            switch($bulkOptions){
-                case 'delete':
-                    $cats = Category::findOrFail($categoryId);
-                    $cats->delete();
-                break;
-                
-                default:
-                return back();
+      $ids = $request->checkBoxArray;
+      $bulkOptions = $request->bulkoptions;
+    
+        foreach($ids as $id){
+            if($bulkOptions == 'delete'){
+                $cat = Category::findOrFail($id);
+                $cat->delete();
             }
-
         }
-        return back();
+        
+        return back();    
     }
     
     public function postsOptions(Request $request) {

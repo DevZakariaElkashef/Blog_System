@@ -40,7 +40,7 @@ Route::middleware(['auth','isadmin'])->group(function(){
     Route::get('comment/approving/{id}', [CommentController::class, 'approving']);
     Route::get('comment/unapproving/{id}', [CommentController::class, 'unapproving']);
     Route::post('commentoption' , [BlukOptoinsController::class, 'commentOption'])->name('commentoption');
-    Route::post('categoriesoptions' , [BlukOptoinsController::class, 'categoriesOptions'])->name('categoriesoptions');
+    Route::get('categoriesoptions' , [BlukOptoinsController::class, 'categoriesOptions'])->name('categoriesoptions');
     Route::post('postsoptions', [BlukOptoinsController::class, 'postsOptions'])->name('postsoptions');
     Route::post('useroptions', [BlukOptoinsController::class, 'userOptions'])->name('useroptions');
 });
@@ -48,7 +48,7 @@ Route::middleware(['auth','isadmin'])->group(function(){
 
 Route::middleware(['auth'])->group(function(){
     
-    Route::resource('new-post', App\Http\Controllers\User\PostController::class);
+    Route::resource('user_post', App\Http\Controllers\User\PostController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('profile', ProfileController::class);
     

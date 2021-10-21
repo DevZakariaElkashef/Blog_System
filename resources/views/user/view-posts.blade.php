@@ -6,11 +6,10 @@
             <div class="row d-flex justify-content-between">
                 <!-- Blog entries-->
                 <div class="col-lg-7">
-                    
                     <div class="container-fluid">
                         <div class="row d-flex align-items-baseline">
                             @foreach ($rows as $row)
-                                <div class="col-11 post">
+                                <div class="col-11 post @if ($row->status == 'drafted') opacity-50 @endif">
                                     <a href="{{url('post',$row->id)}}"><img class="card-img-top" src="{{asset('img/posts/'.$row->image)}}" alt="..." /></a>
                                     <div class="card-body">
                                         <div class="small text-muted">{{$row->created_at}}</div>
@@ -24,7 +23,7 @@
                     </div>
                 </div>
                 <!-- Side widgets-->
-                <div class="col-lg-4">
+                <div class="col-md-4">
                     <!-- Search widget-->
                     <div class="card mb-4">
                         <div class="card-header">Search</div>
@@ -110,6 +109,7 @@
                         <div class="card-header">Categories</div>
                         <div class="card-body">
                             <div class="row">
+                                @if (isset($cats))
                                 @foreach ($cats as $cat)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
@@ -117,7 +117,7 @@
                                     </ul>
                                 </div>
                                 @endforeach
-                                
+                                @endif
                             </div>
                         </div>
                     </div>
