@@ -13,7 +13,7 @@
                             <div class="small text-muted">{{$row->created_at}}</div>
                             <h2 class="card-title">{{$row->title}}</h2>
                             <p class="card-text">{!! substr($row->content, 0, 100) !!}</p>
-                            <a class="btn btn-primary" href="{{url('post',$row->id)}}">Read more →</a>
+                            <a class="btn btn-outline-primary" href="{{url('post',$row->id)}}">Read more →</a>
                         </div>
                     </div>
                 @endforeach

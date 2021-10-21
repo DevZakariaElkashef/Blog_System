@@ -38,7 +38,7 @@
     </head>
     <body>
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-lg-top">
             <div class="container">
               <a class="navbar-brand" href="{{route('home')}}">Home Page</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
                         </li>
                         @can('bloger')
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('user_post.show', Auth::user()->id) }}">My Posts</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('user_post.show', Auth::user()->id) }}">My Posts</a>
                         </li>
                         @endcan
                           @can('admins')
@@ -199,7 +199,7 @@
                                 @csrf
                                 <div class="input-group">
                                     <input class="form-control" type="text" placeholder="Enter search term..." name="search"/>
-                                    <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                                    <button class="btn btn-outline-primary" id="button-search" type="submit">Go!</button>
                                 </div>
                             </form>
                         </div>
@@ -276,7 +276,7 @@
                         <div class="card-header">Categories</div>
                         <div class="card-body">
                             <div class="row">
-                                @if (isset($cats))
+                                @if (count($cats) > 0)
                                 @foreach ($cats as $cat)
                                 <div class="col-md-6 d-flex align-items-center">
                                     <ul class="list-unstyled mb-0">
@@ -284,6 +284,15 @@
                                     </ul>
                                 </div>
                                 @endforeach
+                                @if (isset($cats))
+                                <div class="d-flex justify-content-center mt-3">
+                                    {!! $cats->links() !!}
+                                </div>
+                                @endif
+                                @else
+                                <div class="d-flex justify-content-center align-items-center" style="height:100%;">
+                                    <h5 class="text-muted">No Categories To View</h5>
+                                </div>
                                 @endif
                             </div>
                         </div>

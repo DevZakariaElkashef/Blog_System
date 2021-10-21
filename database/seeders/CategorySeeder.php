@@ -15,12 +15,6 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
-        for($i=1; $i<=50; $i++){
-            Category::create([
-                'name' => $faker->Company,
-                'date' => $faker->DateTime
-            ]);
-        }
+        Category::factory()->count(50)->create();
     }
 }

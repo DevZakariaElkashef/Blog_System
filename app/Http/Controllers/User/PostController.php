@@ -73,7 +73,7 @@ class PostController extends Controller
     public function show($id)
     {
         $rows = Post::where('user_id', '=', $id)->paginate(3);
-        $cats = Category::all();
+        $cats = Category::paginate(58, ['*'], 'categories'); 
         
         return view('user.view-posts', compact('rows' ,'cats'));
     }

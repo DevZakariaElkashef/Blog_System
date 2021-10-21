@@ -16,7 +16,7 @@ class PostPageController extends Controller
     {
         event(new AddViewerEvent($id));
         $post = Post::findOrFail($id);
-        $cats = Category::paginate(70);
+        $cats = Category::paginate(58, ['*'], 'categories'); 
         $comments = comment::where('post_id', '=', $id)->where('status', '=', 'approved')->get();
         
         
