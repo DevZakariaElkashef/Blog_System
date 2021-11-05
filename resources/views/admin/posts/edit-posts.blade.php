@@ -29,9 +29,11 @@
             <label>Post Tags</label>
             <input type="text" name="tags" class="form-control" value="{{$row->tags}}">
         </div>
-        <div class="form-group">
-            <label>Post Status</label>
-            <input type="text" name="status" class="form-control" value="{{$row->status}}">
+        <div class="form-group ">
+            <select name="status" class="form-select form-control">
+                <option value="published">Publish</option>
+                <option value="drafted">Draft</option>
+            </select>
         </div>
         <div class="form-group">
             <label>Post Content</label>

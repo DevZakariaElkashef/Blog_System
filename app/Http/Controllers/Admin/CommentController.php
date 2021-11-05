@@ -17,7 +17,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $rows = comment::with('post')->get();
+        $rows = comment::with('post')->paginate(10, ['*'], 'comments');
         
         return view('admin.comments.view-comments', compact('rows'));
     }

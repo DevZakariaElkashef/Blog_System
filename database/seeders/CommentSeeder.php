@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\comment;
+use App\Models\Post;
 use App\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;

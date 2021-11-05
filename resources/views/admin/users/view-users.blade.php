@@ -76,6 +76,9 @@
                 </table>
             </div>
         </div>
+        <div class="d-flex justify-content-center">
+            {!! $rows->links(); !!}
+        </div>
     </div>
     </form>
 </div>

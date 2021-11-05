@@ -36,7 +36,7 @@ class CommentFactory extends Factory
             'email'  => function () {
                 return User::factory()->create()->email;
             },
-            'sttus'    => 'unapproved',
+            'status'    => 'unapproved',
             'content'  => $this->faker->words(500, true),
             'date'     => $this->faker->date($format = 'Y-m-d', $max = 'now')
 

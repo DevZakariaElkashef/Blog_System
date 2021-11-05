@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $rows = Post::with('category')->get();
+        $rows = Post::with('category')->paginate(10, ['*'], 'posts');
         $cats = Category::paginate(58, ['*'], 'categories'); 
         return view('admin.posts.view-posts', compact('rows', 'cats'));
     }
